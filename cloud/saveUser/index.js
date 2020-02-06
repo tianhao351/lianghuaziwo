@@ -20,6 +20,12 @@ exports.main = async (event, context) => {
         // _id: 'test', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
         openid: event.openid,
         userInfo: event.userInfo,
+        userHealthy: {
+          height:event.height,
+          weight:event.weight,
+          sex:event.sex,
+          phone:event.phone
+        }
       },
       success: function (res) {
       }

@@ -82,11 +82,26 @@ Page({
       name: "saveUser",
       data: {
         userInfo:this.data.userInfo,
-        openid: openid
+        openid: openid,
+        height:170,
+        weight:80,
+        sex:1,
+        phone:123123123
         }
         ,
       success(res) {
         console.log('saveUser', res)
+      }
+    })
+
+
+    wx.cloud.callFunction({
+      name: "getUserInfo",
+      data: {
+        openid:openid
+      },
+      success(res) {
+        console.log('getUserInfo', res)
       }
     })
 
