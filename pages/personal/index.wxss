@@ -54,6 +54,11 @@
     border: 1rpx solid #ccc;
 }
 
+.gender-btn.disabled {
+    color: #ccc;
+    background-color: #fefefe;
+}
+
 .gender-btn.active {
     background-color: #09f;
     color: #fff;
@@ -87,6 +92,11 @@
     line-height: 78rpx;
     height: 78rpx;
     text-align: center;
+    color: #ccc;
+}
+
+.phone-input {
+    color: #333 !important;
 }
 
 .wrap > view {
@@ -107,33 +117,5 @@
     text-overflow:ellipsis;
     white-space: nowrap;
     word-wrap: nowrap;
-}
-
-.step2 {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 20rpx;
-}
-
-.h3 {
-    font-size: 40rpx;
-    padding: 20rpx 0 40rpx;
-}
-
-radio-group {
-    display: flex;
-    justify-content: space-between;
-}
-
-radio text {
-    font-size: 24rpx;
-}
-
-radio .wx-radio-input {
-    width: 24rpx;
-    height: 24rpx;
-}
-
-.group-wrap {
-    margin-bottom: 20rpx;
+    color: #ccc;
 }

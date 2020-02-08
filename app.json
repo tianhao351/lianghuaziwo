@@ -1,7 +1,11 @@
 {
   "pages": [
+    "pages/main/main",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/history/index",
+    "pages/detail/index",
+    "pages/personal/index",
+    "pages/feedback/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

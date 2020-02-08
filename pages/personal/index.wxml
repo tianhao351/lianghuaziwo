@@ -1,0 +1,67 @@
+<!--index.wxml-->
+<view class="container">
+    <scroll-view scroll-y>
+        <view class="step1">
+            <view class="userinfo">
+                <view>
+                    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+                    <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+                </view>
+            </view>
+
+            <view class="gender">
+                <view class="gender-btn {{ sex === 1 ? 'active' : 'disabled' }}">男</view>
+                <view class="gender-btn {{ sex === 2 ? 'active' : 'disabled' }}">女</view>
+            </view>
+
+            <view class="region">
+                <view>年龄</view>
+                <view class="wrap">
+                    <input value="{{ age }}" type="number" disabled="{{ true }}"/>
+                    <view>岁</view>
+                </view>
+            </view>
+
+            <view class="region">
+                <view>身高</view>
+                <view class="wrap">
+                    <input value="{{ height }}" type="number" disabled="{{ true }}"/>
+                    <view>cm</view>
+                </view>
+            </view>
+
+            <view class="region">
+                <view>体重</view>
+                <view class="wrap">
+                    <input value="{{ weight }}" type="number" disabled="{{ true }}"/>
+                    <view>kg</view>
+                </view>
+            </view>
+
+            <view class="region">
+                <view>手机号</view>
+                <view class="wrap phone">
+                    <input value="{{ phone }}" bindinput="setPhone" type="number" class="phone-input"/>
+                </view>
+            </view>
+
+            <view class="region">
+                <view>健身/运动经历</view>
+                <view class="wrap phone">
+                    <picker
+                            mode="selector"
+                            value="{{ experience }}"
+                            range="{{ experiences }}"
+                            disabled="{{ true }}"
+                    >
+                        <view class="picker-view">{{ experiences[experience] }}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+
+    <view class="btn-wrap">
+        <view bindtap="save">保存</view>
+    </view>
+</view>

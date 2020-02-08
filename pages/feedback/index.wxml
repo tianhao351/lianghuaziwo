@@ -1,0 +1,7 @@
+<view class="feedback">
+    <view>说明:</view>
+    <view>本实验属于个人学术研究。如想反馈问题或提建议，辛苦添加本人微信。</view>
+    <image src="/images/qrcode.jpg" mode="widthFix" bindtap="preview"/>
+    <view class="h3">li_andyi</view>
+    <view class="btn" bindtap="copy">点击复制微信号</view>
+</view>

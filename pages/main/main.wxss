@@ -1,0 +1,93 @@
+.main-page {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 0 80rpx;
+    position: relative;
+}
+
+.avatar {
+    padding: 150rpx 0;
+    text-align: center;
+}
+
+.avatar image {
+    width: 150rpx;
+    height: 150rpx;
+    margin: 0 auto;
+    display: block;
+}
+
+.item {
+    padding: 20rpx 30rpx;
+    border-top: 1rpx solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item:last-child {
+    border-bottom: 1rpx solid #ccc;
+}
+
+.item image {
+    width: 26rpx;
+    height: 26rpx;
+}
+
+.btn-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80rpx;
+}
+
+.btn {
+    display: inline-block;
+    width: 50%;
+    height: 80rpx;
+    line-height: 79rpx;
+    border-top: 1rpx solid #ccc;
+    background-color: #fefefe;
+    text-align: center;
+}
+
+.btn.active {
+    background-color: #09f;
+    color: #fff;
+    border-color: #09f;
+}
+
+.mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+swiper {
+    width: 467rpx;
+    height: 1010rpx;
+    margin-bottom: 40rpx;
+}
+
+swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+.mask > image {
+    width: 48rpx;
+    height: 48rpx;
+    background-color: #fff;
+    border: 2rpx solid #666;
+    border-radius: 50%;
+}

@@ -1,0 +1,37 @@
+<view class="main-page">
+    <!-- 数据展示面板 -->
+    <view wx:if="{{ activeIndex === 0 }}" class="data">
+
+    </view>
+
+    <!-- 个人中心 -->
+    <view wx:else class="personal">
+        <view class="avatar">
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+        </view>
+
+        <view class="item" bindtap="openPersonal">个人资料 <image src="/images/enter.png"/></view>
+        <view class="item" bindtap="openHistory">历史数据 <image src="/images/enter.png"/></view>
+        <view class="item" bindtap="openFeedback">反馈问题 <image src="/images/enter.png"/></view>
+    </view>
+
+    <!-- 图片滑动区域 -->
+    <view class="mask" wx:if="{{ showMask }}">
+        <swiper indicator-dots="{{ true }}">
+            <swiper-item><image src="/images/1.png"/></swiper-item>
+            <swiper-item><image src="/images/2.png"/></swiper-item>
+            <swiper-item><image src="/images/3.png"/></swiper-item>
+            <swiper-item><image src="/images/4.png"/></swiper-item>
+            <swiper-item><image src="/images/5.png"/></swiper-item>
+            <swiper-item><image src="/images/6.png"/></swiper-item>
+        </swiper>
+        <image src="/images/close.png" bindtap="closeMask"/>
+    </view>
+
+    <!-- 按钮控制上层展示 -->
+    <view class="btn-wrap">
+        <view class="btn {{ activeIndex === 0 ? 'active' : '' }}" bindtap="setActiveIndex" data-index="0">主页</view>
+        <view class="btn {{ activeIndex === 1 ? 'active' : '' }}" bindtap="setActiveIndex" data-index="1">我</view>
+    </view>
+</view>

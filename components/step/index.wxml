@@ -1,0 +1,54 @@
+<view class="step-wrap">
+    <view class="text-wrap">
+        <view class="step-text">{{ step }} 步</view>
+        <block wx:if="{{ desc }}">
+            <view class="desc">{{ desc }}</view>
+            <view class="desc">(点击文字可以进行修改)</view>
+        </block>
+        <block wx:else>
+            <view class="desc" bindtap="addDesc">如果今天的运动量较往常有异常，请点击文字进行备注</view>
+        </block>
+    </view>
+    <view class="hint-wrap">
+        <view>声明：</view>
+        <view>1、本实验的所有数据用于学术研究，不会外露及商用。</view>
+        <view>2、本实验只读取微信运动步数的数据，不会读取其他隐私信息。</view>
+        <view>3、本实验实验周期为21个工作日，实验完成后会进行提示并发送一定的被试费，感谢您的配合。</view>
+    </view>
+
+    <!-- mask -->
+    <view class="mask" wx:if="{{ showMask }}">
+        <!-- 添加备注 -->
+        <view wx:if="{{ showAddDesc }}" class="desc-wrap">
+            <image src="/images/close.png" bindtap="closeDesc"/>
+            <view class="title">
+                添加异常备注
+            </view>
+            <radio-group bindchange="changeDescIndex">
+                <view class="radio">
+                    <view>今天临时有事情，较往常多走了一些路</view>
+                    <radio value="0" color="#09f" />
+                </view>
+                <view class="radio">
+                    <view>今天不舒服，或长时间开会，较往常少走了一些路</view>
+                    <radio value="1" color="#09f" />
+                </view>
+                <view class="radio">
+                    <view>其他</view>
+                    <input placeholder="麻烦请添加详细原因" bindinput="onReasonChange"/>
+                    <radio value="2" color="#09f" />
+                </view>
+            </radio-group>
+        </view>
+
+        <!-- 填写步数 -->
+        <view wx:if="{{ showInputStep }}" class="input-wrap">
+            <view class="title">猜一猜截止到目前，你一共走了多少步？</view>
+            <view class="input">
+                <input bindchange="onStepChange" type="number" />
+                <view class="input-desc">步</view>
+            </view>
+            <view class="btn" bindtap="onSubmitPredictStep">确定</view>
+        </view>
+    </view>
+</view>

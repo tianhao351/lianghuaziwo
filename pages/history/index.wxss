@@ -1,0 +1,34 @@
+.desc {
+    padding: 0 20rpx;
+    font-size: 24rpx;
+}
+
+.desc:first-of-type {
+    padding-top: 20rpx;
+}
+
+.last {
+    margin-bottom: 40rpx;
+}
+
+.item {
+    padding: 20rpx;
+    border-top: 1rpx solid #ccc;
+    font-size: 28rpx;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item:last-of-type {
+    border-bottom: 1rpx solid #ccc;
+}
+
+.empty {
+    width: 100%;
+    text-align: center;
+    color: #ccc;
+    margin-top: 300rpx;
+}
