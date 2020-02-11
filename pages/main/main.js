@@ -2,6 +2,9 @@ import service from "../../services/service";
 import storage from "../../utils/storage";
 const app = getApp();
 
+let openid = '';
+
+
 Page({
     data: {
         userInfo: {},
@@ -59,4 +62,42 @@ Page({
     openFeedback() {
         wx.navigateTo({ url: '/pages/feedback/index' });
     },
+
+
+
+
+
+
+  saveAnswer() {
+    openid = app.globalData.openid
+    wx.cloud.callFunction({
+      name: "saveAnswer",
+      data: {
+        openid: 'opZ9a5MKNG51Hg-FemHBkmnqx92I',
+        answer: [1,2,3,3,1,2,1,3,3,3,3]
+      },
+      success(res) {
+        console.log('saveAnswer', res)
+      },
+      fail: console.error
+    })
+  },
+
+
+
+saveRemark() {
+  console.log(app.globalData.openid)
+  wx.cloud.callFunction({
+    name: "saveWerunRemark",
+    data: {
+      openid: 'opZ9a5MKNG51Hg-FemHBkmnqx92I',
+      date: '2020-2-10',
+      remark: '测试remark'
+    },
+    success(res) {
+      console.log('getopenid', res)
+    },
+    fail: console.error
+  })
+},
 })

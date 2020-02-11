@@ -14,6 +14,10 @@
         <view class="item" bindtap="openPersonal">个人资料 <image src="/images/enter.png"/></view>
         <view class="item" bindtap="openHistory">历史数据 <image src="/images/enter.png"/></view>
         <view class="item" bindtap="openFeedback">反馈问题 <image src="/images/enter.png"/></view>
+
+        <view class="item" bindtap="saveAnswer">saveAnswer <image src="/images/enter.png"/></view>
+        <view class="item" bindtap="saveRemark">saveRemark <image src="/images/enter.png"/></view>
+
     </view>
 
     <!-- 图片滑动区域 -->
