@@ -39,7 +39,7 @@ Page({
     },
 
     openDetail(e) {
-        const { dataset: { index } } = e.target;
+        const { dataset: { index } } = e.currentTarget;
         const activeData = this.data.list[+index];
         app.globalData.historyData = activeData;
         wx.navigateTo({ url: '/pages/detail/index' });
