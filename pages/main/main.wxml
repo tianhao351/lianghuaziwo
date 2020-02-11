@@ -16,7 +16,7 @@
         <view class="item" bindtap="openFeedback">反馈问题 <image src="/images/enter.png"/></view>
 
         <view class="item" bindtap="saveAnswer">saveAnswer <image src="/images/enter.png"/></view>
-        <view class="item" bindtap="saveRemark">saveRemark <image src="/images/enter.png"/></view>
+        <view class="item" bindtap="saveGuessStep">saveGuessStep <image src="/images/enter.png"/></view>
 
     </view>
 

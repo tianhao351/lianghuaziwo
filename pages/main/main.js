@@ -85,14 +85,15 @@ Page({
 
 
 
-saveRemark() {
+  saveGuessStep() {
   console.log(app.globalData.openid)
   wx.cloud.callFunction({
-    name: "saveWerunRemark",
+    name: "saveGuessStep",
     data: {
       openid: 'opZ9a5MKNG51Hg-FemHBkmnqx92I',
-      date: '2020-2-10',
-      remark: '测试remark'
+      date: '2020-2-11',
+      guess: 8888,
+      time: '21:42'
     },
     success(res) {
       console.log('getopenid', res)
