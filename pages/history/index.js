@@ -8,6 +8,16 @@ Page({
     },
 
     onLoad() {
+        this.setRunData();
+    },
+
+    onShow() {
+        if (app.globalData.needFreshData) {
+            this.setRunData();
+        }
+    },
+
+    setRunData() {
         wx.getWeRunData({
             success: (res) => {
                 service.getWxRunDataList(res.cloudID).then(data => {

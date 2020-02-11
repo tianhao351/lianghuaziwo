@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 0 0 80rpx;
+    padding: 0 0 120rpx;
     position: relative;
 }
 
@@ -45,15 +45,15 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 80rpx;
+    height: 120rpx;
     z-index: 1;
 }
 
 .btn {
     display: inline-block;
     width: 50%;
-    height: 80rpx;
-    line-height: 79rpx;
+    height: 120rpx;
+    line-height: 119rpx;
     border-top: 1rpx solid #ccc;
     background-color: #fefefe;
     text-align: center;

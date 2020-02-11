@@ -42,6 +42,12 @@ Page({
         }
     },
 
+    onShow() {
+        if (app.globalData.needFreshData) {
+            this.setStepInfo();
+        }
+    },
+
     setActiveIndex(e) {
         const { index } = e.target.dataset;
         this.setData({

@@ -4,7 +4,8 @@ App({
     globalData: {
         userInfo: null,
         openid: '',
-        firstIn: true
+        firstIn: true,
+        needFreshData: false
     },
 
     onLaunch: function () {

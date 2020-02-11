@@ -50,10 +50,10 @@ Component({
             const { value } = e.detail;
             switch (+value) {
                 case 0:
-                    this.setData({ desc: '今天临时有事情，较往常多走了一些路' });
+                    this.saveDesc('今天临时有事情，较往常多走了一些路');
                     break;
                 case 1:
-                    this.setData({ desc: '今天不舒服，或长时间开会，较往常少走了一些路' });
+                    this.saveDesc('今天不舒服，或长时间开会，较往常少走了一些路');
                     break;
                 default:
                     break;
@@ -62,17 +62,27 @@ Component({
 
         onReasonChange(e) {
             const { value } = e.detail;
-            this.setData({ desc: value });
+            this.saveDesc(value);
         },
 
-        closeDesc() {
+        saveDesc(desc) {
             const data = {
                 openid: app.globalData.userInfo.openid,
                 date: this.data.info.date,
-                remark: this.data.desc
+                remark: desc
             };
+            this.setData({
+                showMask: false,
+                showAddDesc: false,
+                desc
+            });
+            service.saveUserRemark(data).then(() => {
+                app.globalData.needFreshData = true;
+            });
+        },
+
+        closeDesc() {
             this.setData({ showMask: false, showAddDesc: false });
-            service.saveUserRemark(data).then(() => {});
         },
 
         onStepChange(e) {

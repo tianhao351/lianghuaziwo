@@ -1,14 +1,16 @@
 <view class="step-wrap">
     <view class="text-wrap">
-        <view class="step-text">{{ info.value }} {{ info.desc }}</view>
-        <view wx:if="{{ text }}" class="desc {{ textClass }}">{{ text }}</view>
-        <block wx:if="{{ desc }}">
-            <view class="desc" bindtap="addDesc">{{ desc }}</view>
-            <view class="desc">(点击文字可以进行修改)</view>
-        </block>
-        <block wx:else>
-            <view class="desc" bindtap="addDesc">如果今天的运动量较往常有异常，请点击文字进行备注</view>
-        </block>
+        <view bindtap="addDesc">
+            <view class="step-text">{{ info.value }} {{ info.desc }}</view>
+            <view wx:if="{{ text }}" class="desc {{ textClass }}">{{ text }}</view>
+            <block wx:if="{{ desc }}">
+                <view class="desc">{{ desc }}</view>
+                <view class="desc">(点击文字可以进行修改)</view>
+            </block>
+            <block wx:else>
+                <view class="desc">如果今天的运动量较往常有异常，请点击文字进行备注</view>
+            </block>
+        </view>
     </view>
     <view class="hint-wrap">
         <view>声明：</view>
@@ -36,7 +38,7 @@
                 </view>
                 <view class="radio">
                     <view>其他</view>
-                    <input placeholder="麻烦请添加详细原因" bindinput="onReasonChange"/>
+                    <input placeholder="麻烦请添加详细原因" bindblur="onReasonChange"/>
                     <radio value="2" color="#09f" />
                 </view>
             </radio-group>
