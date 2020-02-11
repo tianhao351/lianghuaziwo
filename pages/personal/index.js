@@ -37,7 +37,7 @@ Page({
     },
 
     save() {
-        const openid = app.globalData;
+        const openid = app.globalData.openid;
         const { userInfo, sex, age, height, weight, phone, experience } = this.data;
         const data = {
             openid,

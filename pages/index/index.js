@@ -118,10 +118,7 @@ Page({
                         openid,
                         answer: this.choices
                     };
-                    Promise.all([
-                        service.saveUserInfo(data),
-                        service.saveUserAnswers(answerData)
-                    ]).then(() => {
+                    service.saveUserInfo(data).then(() => {
                         // 适配服务端结构
                         const saveData = {
                             openid,
@@ -137,8 +134,10 @@ Page({
                         };
                         app.globalData.userInfo = saveData;
                         storage.set('user_info', saveData);
-                        wx.redirectTo({
-                            url: '/pages/main/main?first=1'
+                        service.saveUserAnswers(answerData).then(() => {
+                            wx.redirectTo({
+                                url: '/pages/main/main?first=1'
+                            });
                         });
                     }).catch(() => {
                         this.showToast('请求失败，请稍后重试！');
