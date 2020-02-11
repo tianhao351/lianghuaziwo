@@ -26,6 +26,14 @@
     text-align: center;
 }
 
+.desc.red {
+    color: red;
+}
+
+.desc.green {
+    color: chartreuse;
+}
+
 .hint-wrap {
     height: 192rpx;
 }
@@ -42,6 +50,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
 .desc-wrap {
@@ -54,7 +63,7 @@
     padding: 40rpx 20rpx;
 }
 
-image {
+.step-wrap image {
     width: 48rpx;
     height: 48rpx;
     position: absolute;
@@ -64,7 +73,8 @@ image {
 
 .title {
     text-align: center;
-    padding: 20rpx;
+    padding: 20rpx 60rpx;
+    height: 96rpx;
 }
 
 .radio {

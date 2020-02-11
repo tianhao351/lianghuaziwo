@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "运动情况统计",
-  "usingComponents": {}
+  "usingComponents": {
+    "step": "../../components/step/index"
+  }
 }

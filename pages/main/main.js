@@ -1,21 +1,22 @@
 import service from "../../services/service";
 import storage from "../../utils/storage";
+import { getType } from "../../utils/helper";
 const app = getApp();
-
-let openid = '';
-
 
 Page({
     data: {
         userInfo: {},
         activeIndex: 1,
         showMask: false,
+        info: null,
+        needGuessStep: false
     },
 
     onLoad(options) {
         const { userInfo } = app.globalData;
         const { first } = options;
         if (userInfo) {
+            this.setStepInfo();
             this.setData({
                 userInfo: userInfo.userInfo,
                 showMask: !!first
@@ -26,6 +27,7 @@ Page({
                 app.globalData.openid = wxUserInfo.openid;
                 service.getUserInfo(wxUserInfo.openid).then(userInfo => {
                     if (userInfo && userInfo.data.length) {
+                        this.setStepInfo();
                         app.globalData.userInfo = userInfo.data[0];
                         storage.set('user_info', userInfo.data[0]);
                         this.setData({
@@ -63,42 +65,48 @@ Page({
         wx.navigateTo({ url: '/pages/feedback/index' });
     },
 
-
-
-
-
-
-  saveAnswer() {
-    openid = app.globalData.openid
-    wx.cloud.callFunction({
-      name: "saveAnswer",
-      data: {
-        openid: 'opZ9a5MKNG51Hg-FemHBkmnqx92I',
-        answer: [1,2,3,3,1,2,1,3,3,3,3]
-      },
-      success(res) {
-        console.log('saveAnswer', res)
-      },
-      fail: console.error
-    })
-  },
-
-
-
-  saveGuessStep() {
-  console.log(app.globalData.openid)
-  wx.cloud.callFunction({
-    name: "saveGuessStep",
-    data: {
-      openid: 'opZ9a5MKNG51Hg-FemHBkmnqx92I',
-      date: '2020-2-11',
-      guess: 8888,
-      time: '21:42'
+    setStepInfo() {
+        wx.getWeRunData({
+            success: (res) => {
+                service.getWxRunDataList(res.cloudID).then(data => {
+                    const { exp, dataList: { weRunList } } = data;
+                    const type = getType(exp);
+                    const list = Object.keys(weRunList);
+                    const key = list.pop();
+                    const info = {
+                        type,
+                        value: type ? weRunList[key].totalCalorie.toFixed(2) : weRunList[key].totalStep,
+                        desc: type ? '千卡' : '步',
+                        date: key,
+                        remark: weRunList[key].remark || '',
+                        desc2: type ? '猜猜截止到目前，你通过步行一共消耗了多少热量？' : '猜猜截止目前，你一共走了多少步？'
+                    };
+                    if (list.length <= 14) {
+                        // 纯展示逻辑，拿到今天的那条数据
+                        this.setData({
+                            info: {
+                                ...info,
+                                showInputStep: true
+                            }
+                        });
+                    } else if (list.length <= 21) {
+                        // 15 - 21 天需要预估步数信息
+                        this.setData({
+                            info: {
+                                ...info,
+                                showInputStep: true
+                            }
+                        });
+                    } else {
+                        this.setData({
+                            info: {
+                                ...info,
+                                showFinishToast: true
+                            }
+                        })
+                    }
+                });
+            }
+        });
     },
-    success(res) {
-      console.log('getopenid', res)
-    },
-    fail: console.error
-  })
-},
-})
+});

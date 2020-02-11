@@ -20,7 +20,7 @@
             <view class="region">
                 <view>年龄</view>
                 <view class="wrap">
-                    <input bindinput="setAge" type="number"/>
+                    <input bindblur="setAge" type="number"/>
                     <view>岁</view>
                 </view>
             </view>
@@ -28,7 +28,7 @@
             <view class="region">
                 <view>身高</view>
                 <view class="wrap">
-                    <input bindinput="setHeight" type="number"/>
+                    <input bindblur="setHeight" type="number"/>
                     <view>cm</view>
                 </view>
             </view>
@@ -36,7 +36,7 @@
             <view class="region">
                 <view>体重</view>
                 <view class="wrap">
-                    <input bindinput="setWeight" type="number"/>
+                    <input bindblur="setWeight" type="number"/>
                     <view>kg</view>
                 </view>
             </view>
@@ -44,7 +44,7 @@
             <view class="region">
                 <view>手机号</view>
                 <view class="wrap phone">
-                    <input bindinput="setPhone" type="number" class="phone"/>
+                    <input bindblur="setPhone" type="number" class="phone"/>
                 </view>
             </view>
 

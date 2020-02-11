@@ -1,10 +1,10 @@
 <scroll-view scroll-y>
     <view class="desc">说明：</view>
     <view class="desc last">以下为所有的历史数据，点击可以查看详情并添加备注</view>
-    <block wx:if="{{ data && data.length > 1 }}">
-        <view wx:for="{{ data }}" class="item" wx:key="index" bindtap="openDetail" data-index="{{ index }}">
+    <block wx:if="{{ list && list.length >= 1 }}">
+        <view wx:for="{{ list }}" class="item" wx:key="index" bindtap="openDetail" data-index="{{ index }}">
             <view>第 {{ item.week }} 周 第 {{ item.day }} 天</view>
-            <view>{{ item.value }}千卡</view>
+            <view>{{ item.value }}{{ item.desc }}</view>
         </view>
     </block>
     <block wx:else>

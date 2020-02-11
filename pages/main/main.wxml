@@ -1,7 +1,7 @@
 <view class="main-page">
     <!-- 数据展示面板 -->
     <view wx:if="{{ activeIndex === 0 }}" class="data">
-
+        <step info="{{ info }}"></step>
     </view>
 
     <!-- 个人中心 -->
@@ -14,9 +14,6 @@
         <view class="item" bindtap="openPersonal">个人资料 <image src="/images/enter.png"/></view>
         <view class="item" bindtap="openHistory">历史数据 <image src="/images/enter.png"/></view>
         <view class="item" bindtap="openFeedback">反馈问题 <image src="/images/enter.png"/></view>
-
-        <view class="item" bindtap="saveAnswer">saveAnswer <image src="/images/enter.png"/></view>
-        <view class="item" bindtap="saveGuessStep">saveGuessStep <image src="/images/enter.png"/></view>
 
     </view>
 

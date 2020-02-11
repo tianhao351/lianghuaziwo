@@ -114,8 +114,13 @@ Page({
                         phone,
                         experience
                     };
+                    const answerData = {
+                        openid,
+                        answer: this.choices
+                    };
                     Promise.all([
-                        service.saveUserInfo(data)
+                        service.saveUserInfo(data),
+                        service.saveUserAnswers(answerData)
                     ]).then(() => {
                         // 适配服务端结构
                         const saveData = {

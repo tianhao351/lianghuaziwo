@@ -1,8 +1,9 @@
 <view class="step-wrap">
     <view class="text-wrap">
-        <view class="step-text">{{ step }} 步</view>
+        <view class="step-text">{{ info.value }} {{ info.desc }}</view>
+        <view wx:if="{{ text }}" class="desc {{ textClass }}">{{ text }}</view>
         <block wx:if="{{ desc }}">
-            <view class="desc">{{ desc }}</view>
+            <view class="desc" bindtap="addDesc">{{ desc }}</view>
             <view class="desc">(点击文字可以进行修改)</view>
         </block>
         <block wx:else>
@@ -43,10 +44,10 @@
 
         <!-- 填写步数 -->
         <view wx:if="{{ showInputStep }}" class="input-wrap">
-            <view class="title">猜一猜截止到目前，你一共走了多少步？</view>
+            <view class="title">{{ info.desc2 }}</view>
             <view class="input">
-                <input bindchange="onStepChange" type="number" />
-                <view class="input-desc">步</view>
+                <input bindblur="onStepChange" type="number" />
+                <view class="input-desc">{{ info.desc }}</view>
             </view>
             <view class="btn" bindtap="onSubmitPredictStep">确定</view>
         </view>

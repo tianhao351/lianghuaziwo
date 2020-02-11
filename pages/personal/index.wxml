@@ -41,7 +41,7 @@
             <view class="region">
                 <view>手机号</view>
                 <view class="wrap phone">
-                    <input value="{{ phone }}" bindinput="setPhone" type="number" class="phone-input"/>
+                    <input value="{{ phone }}" bindblur="setPhone" type="number" class="phone-input"/>
                 </view>
             </view>
 
