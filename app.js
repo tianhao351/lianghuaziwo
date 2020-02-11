@@ -5,6 +5,8 @@ App({
         userInfo: null,
         openid: '',
         firstIn: true,
+        text: '',
+        textClass: '',
         needFreshData: false
     },
 

@@ -15,7 +15,9 @@ Component({
         showInputStep: false,
         predictStep: 0,
         text: '',
-        textClass: ''
+        textClass: '',
+        displayValue: '',
+        displayDesc: ''
     },
     attached() {
         if (this.data.info) {
@@ -30,10 +32,16 @@ Component({
     observers: {
         'info': function(info) {
             if (info) {
+                const { firstIn, text, textClass } = app.globalData;
+                const needShowDialog = (!!info.showInputStep) && firstIn;
                 this.setData({
                     desc: info.remark,
-                    showInputStep: !!info.showInputStep,
-                    showMask: !!info.showInputStep
+                    showInputStep: needShowDialog,
+                    showMask: needShowDialog,
+                    displayValue: needShowDialog ? '' : info.value,
+                    displayDesc: needShowDialog ? '' : info.desc,
+                    text: !!info.showInputStep ? text : '',
+                    textClass: !!info.showInputStep ? textClass : ''
                 });
                 if (info.showFinishToast) {
                     this.showFinishToast();
@@ -71,14 +79,16 @@ Component({
                 date: this.data.info.date,
                 remark: desc
             };
-            this.setData({
-                showMask: false,
-                showAddDesc: false,
-                desc
-            });
             service.saveUserRemark(data).then(() => {
                 app.globalData.needFreshData = true;
             });
+            setTimeout(() => {
+                this.setData({
+                    showMask: false,
+                    showAddDesc: false,
+                    desc
+                });
+            }, 300);
         },
 
         closeDesc() {
@@ -99,38 +109,53 @@ Component({
             });
         },
 
+        closeMask() {
+            this.setData({
+                showMask: false,
+                showAddDesc: false,
+                showInputStep: false
+            });
+        },
+
         onSubmitPredictStep() {
+            const { info: { date, value, type, desc }, predictStep } = this.data;
+            if (!predictStep) {
+                wx.showToast({ icon: 'none', title: '请输入预测信息' });
+                return;
+            }
             const now = new Date();
             const hour = now.getHours();
             const minute = now.getMinutes();
-            const { info: { date, value }, predictStep } = this.data;
             const data = {
                 openid: app.globalData.userInfo.openid,
                 date,
                 guess: predictStep,
                 time: `${hour}:${minute}`
             };
-            const { type } = this.data;
             let text = '';
             let textClass = '';
             const num = +value;
             if (num > predictStep) {
                 const delta = num - predictStep;
-                text = type ? `比你预估的热量多${delta}千卡` : `比你预估的步数多${delta}步`;
+                text = type ? `比你预估的热量多${delta.toFixed(2)}千卡` : `比你预估的步数多${delta}步`;
                 textClass = 'green';
             } else if (num < predictStep) {
                 const delta = predictStep - num;
-                text = type ? `比你预估的热量少${delta}千卡` : `比你预估的步数少${delta}步`;
+                text = type ? `比你预估的热量少${delta.toFixed(2)}千卡` : `比你预估的步数少${delta}步`;
                 textClass = 'red';
             } else {
                 text = type ? '和你预估的热量相等' : `和你预估的步数相等${predictStep}`;
             }
             app.globalData.firstIn = false;
+            app.globalData.text = text;
+            app.globalData.textClass = textClass;
             this.setData({
                 showMask: false,
                 showInputStep: false,
                 text,
-                textClass
+                textClass,
+                displayValue: value,
+                displayDesc: desc
             });
             service.saveGuessStep(data).then(() => {});
         }

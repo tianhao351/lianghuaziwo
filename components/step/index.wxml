@@ -1,7 +1,7 @@
 <view class="step-wrap">
     <view class="text-wrap">
         <view bindtap="addDesc">
-            <view class="step-text">{{ info.value }} {{ info.desc }}</view>
+            <view class="step-text">{{ displayValue }} {{ displayDesc }}</view>
             <view wx:if="{{ text }}" class="desc {{ textClass }}">{{ text }}</view>
             <block wx:if="{{ desc }}">
                 <view class="desc">{{ desc }}</view>
