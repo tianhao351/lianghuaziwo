@@ -85,8 +85,7 @@ Page({
                         // 纯展示逻辑，拿到今天的那条数据
                         this.setData({
                             info: {
-                                ...info,
-                                showInputStep: true
+                                ...info
                             }
                         });
                     } else if (list.length <= 21) {
