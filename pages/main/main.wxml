@@ -7,8 +7,8 @@
     <!-- 个人中心 -->
     <view wx:else class="personal">
         <view class="avatar">
-            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-            <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+            <open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+            <open-data type="userNickName" lang="zh_CN" class="userinfo-nickname"></open-data>
         </view>
 
         <view class="item" bindtap="openPersonal">个人资料 <image src="/images/enter.png"/></view>
@@ -20,6 +20,7 @@
     <!-- 图片滑动区域 -->
     <view class="mask" wx:if="{{ showMask }}">
         <swiper indicator-dots="{{ true }}">
+            <swiper-item><image src="/images/0.jpeg"/></swiper-item>
             <swiper-item><image src="/images/1.png"/></swiper-item>
             <swiper-item><image src="/images/2.png"/></swiper-item>
             <swiper-item><image src="/images/3.png"/></swiper-item>

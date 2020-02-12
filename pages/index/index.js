@@ -4,46 +4,19 @@ const app = getApp();
 
 Page({
     data: {
-        userInfo: {},
-        hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        top: 0,
         step: 1,
-        gender: 1,
+        gender: 0,
         age: 0,
         height: 0,
         weight: 0,
         phone: 0,
-        experience: 0,
+        experience: -1,
         experiences: ['现在保持健身/运动的习惯', '之前有过健身/运动经历，现在停滞了', '一直都没有以一定的频率健身/运动']
     },
 
     onLoad: function () {
         this.choices = new Array(10).fill(-1);
-        if (app.globalData.userInfo) {
-            this.setData({
-                userInfo: app.globalData.userInfo,
-                hasUserInfo: true
-            })
-        } else if (this.data.canIUse) {
-        } else {
-            // 在没有 open-type=getUserInfo 版本的兼容处理
-            wx.getUserInfo({
-                success: res => {
-                    app.globalData.userInfo = res.userInfo
-                    this.setData({
-                        userInfo: res.userInfo,
-                        hasUserInfo: true
-                    })
-                }
-            })
-        }
-    },
-
-    getUserInfo: function (e) {
-        this.setData({
-            userInfo: e.detail.userInfo,
-            hasUserInfo: true
-        });
     },
 
     setGender(e) {
@@ -84,7 +57,7 @@ Page({
     setExperience(e) {
         const { value } = e.detail;
         this.setData({
-            experience: value
+            experience: +value
         });
     },
 
@@ -93,7 +66,7 @@ Page({
         switch(step) {
             case 1: {
                 if (this.validateBasicInfo()) {
-                    this.setData({ step: 2 });
+                    this.setData({ step: 2, top: 0 });
                 }
                 break;
             }
@@ -102,10 +75,10 @@ Page({
                 const emptyIndex = this.choices.findIndex(choice => choice === -1);
                 if (emptyIndex === -1) {
                     // 保存用户记录
-                    const { age, gender, height, weight, phone, experience, userInfo } = this.data;
+                    const { age, gender, height, weight, phone, experience } = this.data;
                     const { openid } = app.globalData;
                     const data = {
-                        userInfo,
+                        userInfo: {},
                         openid,
                         sex: gender,
                         age,
@@ -122,7 +95,7 @@ Page({
                         // 适配服务端结构
                         const saveData = {
                             openid,
-                            userInfo,
+                            userInfo: {},
                             userHealthy: {
                                 sex: gender,
                                 age,
@@ -151,9 +124,9 @@ Page({
     },
 
     validateBasicInfo() {
-        const { hasUserInfo, age, height, weight, phone } = this.data;
-        if (!hasUserInfo) {
-            this.showToast('请授权用户信息');
+        const { gender, age, height, weight, phone, experience } = this.data;
+        if (!gender) {
+            this.showToast('请选择性别');
             return false;
         }
         if (!age) {
@@ -170,6 +143,14 @@ Page({
         }
         if (!phone) {
             this.showToast('请输入手机号');
+            return false;
+        }
+        if (!/^[1][3,4,5,7,8,9][0-9]{9}$/.test(phone)) {
+            this.showToast('请输入正确的手机号');
+            return false;
+        }
+        if (experience < 0) {
+            this.showToast('请选择运动经历');
             return false;
         }
         return true;

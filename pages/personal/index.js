@@ -4,7 +4,6 @@ const app = getApp();
 
 Page({
     data: {
-        userInfo: {},
         sex: 1,
         age: 0,
         height: 0,
@@ -19,7 +18,6 @@ Page({
         const { userInfo } = app.globalData;
         const { sex, age = 26, height, weight, phone, experience = '' } = userInfo.userHealthy;
         this.setData({
-            userInfo: userInfo.userInfo,
             sex,
             age,
             height,
@@ -38,10 +36,10 @@ Page({
 
     save() {
         const openid = app.globalData.openid;
-        const { userInfo, sex, age, height, weight, phone, experience } = this.data;
+        const { sex, age, height, weight, phone, experience } = this.data;
         const data = {
             openid,
-            userInfo,
+            userInfo: {},
             sex,
             age,
             height,

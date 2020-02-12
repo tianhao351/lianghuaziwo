@@ -4,8 +4,8 @@
         <view class="step1">
             <view class="userinfo">
                 <view>
-                    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-                    <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+                    <open-data type="userAvatarUrl" class="userinfo-avatar"></open-data>
+                    <open-data type="userNickName" lang="zh_CN" class="userinfo-nickname"></open-data>
                 </view>
             </view>
 

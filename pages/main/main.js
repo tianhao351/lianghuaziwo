@@ -5,7 +5,6 @@ const app = getApp();
 
 Page({
     data: {
-        userInfo: {},
         activeIndex: 1,
         showMask: false,
         info: null,
@@ -18,7 +17,6 @@ Page({
         if (userInfo) {
             this.setStepInfo();
             this.setData({
-                userInfo: userInfo.userInfo,
                 showMask: !!first
             });
         } else {
@@ -31,7 +29,6 @@ Page({
                         app.globalData.userInfo = userInfo.data[0];
                         storage.set('user_info', userInfo.data[0]);
                         this.setData({
-                            userInfo: userInfo.data[0].userInfo,
                             showMask: !!first
                         });
                     } else {
